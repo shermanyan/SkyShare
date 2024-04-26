@@ -1,64 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chat UI</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="chat.css">
-</head>
-<body>
-<div class="container">
-  <aside class="sidebar">
-    <div class="logo">
-      <a class="navbar-brand" style="color: #727fe0; text-decoration:none;" href="#">SkyShare.</a>
-    </div>
-    <nav class="navigation">
-      <a href="#" class="nav-item active"><span class="icon">🏠</span>Chat</a>
-      <a href="#" class="nav-item"><span class="icon">i</span>Flight Information</a>
-      <a href="#" class="nav-item"><span class="icon">📝</span>Logout</a>
-      <!-- Add more nav items -->
-    </nav>
-    <div class="chat-groups">
-      <div class="group">
-        <img src="https://via.placeholder.com/50" alt="Group" class="group-img">
-        <div class="group-info">
-          <h5 class="group-title">UI Designer of BD</h5>
-          <p class="group-message">Lorem ipsum dolor sit amet...</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat UI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="chat.css" />
+  </head>
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <div class="logo">
+          <a class="navbar-brand" style="color: #fff" href="./information.html"
+            >SkyShare.</a
+          >
         </div>
-      </div>
-      <!-- Add more groups -->
+        <nav class="navigation">
+          <a href="#" class="nav-item active"
+            ><span class="icon">🏠</span>Chat</a
+          >
+          <a href="#" class="nav-item"
+            ><span class="icon">i</span>Flight Information</a
+          >
+          <a href="#" class="nav-item"><span class="icon">📝</span>Logout</a>
+          <!-- Add more nav items -->
+        </nav>
+        <div class="chat-groups">
+          <div class="group">
+            <img
+              src="https://via.placeholder.com/50"
+              alt="Group"
+              class="group-img"
+            />
+            <div class="group-info">
+              <h5 class="group-title">UI Designer of BD</h5>
+              <p class="group-message">Lorem ipsum dolor sit amet...</p>
+            </div>
+          </div>
+          <!-- Add more groups -->
+        </div>
+      </aside>
+      <section class="chat-area">
+        <header class="chat-header">
+          <img
+            src="https://via.placeholder.com/50"
+            alt="Recipient"
+            class="recipient-img"
+          />
+          <div class="recipient-info">
+            <h5 class="recipient-name">Tony Stark</h5>
+            <p class="last-seen">Last seen 4:33 AM</p>
+          </div>
+        </header>
+        <div class="chat-messages">
+          <div class="message received">
+            <p>Hello there?</p>
+            <span class="time">4:30 AM</span>
+          </div>
+          <div class="message sent">
+            <p>Hey there! How can I help you today?</p>
+            <span class="time">4:35 AM</span>
+          </div>
+          <!-- Add more messages -->
+        </div>
+        <div class="message-input">
+          <input type="text" placeholder="Type message..." />
+          <button>Send</button>
+        </div>
+      </section>
     </div>
-  </aside>
-  <section class="chat-area">
-    <header class="chat-header">
-      <img src="https://via.placeholder.com/50" alt="Recipient" class="recipient-img">
-      <div class="recipient-info">
-        <h5 class="recipient-name">Tony Stark</h5>
-        <p class="last-seen">Last seen 4:33 AM</p>
-      </div>
-    </header>
-    <div class="chat-messages">
-      <div class="message received">
-        <p>Hello there?</p>
-        <span class="time">4:30 AM</span>
-      </div>
-      <div class="message sent">
-        <p>Hey there! How can I help you today?</p>
-        <span class="time">4:35 AM</span>
-      </div>
-      <!-- Add more messages -->
-    </div>
-    <div class="message-input">
-      <input type="text" placeholder="Type message...">
-      <button>Send</button>
-    </div>
-  </section>
-</div>
-<script>
-// Add your JavaScript here
-</script>
-</body>
+    <script>
+      // Add your JavaScript here
+    </script>
+  </body>
 </html>
