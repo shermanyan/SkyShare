@@ -46,6 +46,34 @@
         font-style: normal;
       }
     </style>
+    <script>
+      function validate() {
+        document.getElementById("uerror").innerHTML = "";
+        document.getElementById("eerror").innerHTML = "";
+        document.getElementById("perror").innerHTML = "";
+        document.getElementById("cerror").innerHTML = "";
+        if (document.signupform.uname.checkValidity() == false) {
+          document.getElementById("uerror").innerHTML = "<font color=\"red\">Username must be between 5 and 20 characters and contain no special characters.</font>";
+        }
+        if (document.signupform.ename.checkValidity() == false) {
+          document.getElementById("eerror").innerHTML = "<font color=\"red\">Invalid Email.</font>";
+        }
+        if (document.signupform.pname.checkValidity() == false) {
+          document.getElementById("perror").innerHTML = "<font color=\"red\">Password must be at least 8 characters and contain a letter, number, and special character.</font>";
+        }
+      }
+
+      function confirm() {
+        if (document.signupform.cname.value != document.signupform.pname.value) {
+          document.getElementById("cerror").innerHTML = "<font color=\"red\">Passwords must match.</font>";
+          document.getElementById("sub").disabled = true;
+        }
+        else {
+          document.getElementById("cerror").innerHTML = "";
+          document.getElementById("sub").disabled = false;
+        }
+      }
+    </script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg" style="background-color: #000000">
@@ -74,7 +102,7 @@
                 class="nav-link active"
                 aria-current="page"
                 style="color: #fff"
-                href="./form.html"
+                href="#"
                 onclick="{home()}"
                 >Home</a
               >
@@ -83,18 +111,9 @@
               <a
                 class="nav-link"
                 style="color: #fff"
-                href="./login.html"
+                href="#"
                 onclick="{login()}"
-                >Login</a
-              >
-            </li>
-            <li class="nav-item" style="display: block">
-              <a
-                class="nav-link"
-                style="color: #fff"
-                href="./signup.html"
-                onclick="{login()}"
-                >Sign Up</a
+                >Login/Sign Up</a
               >
             </li>
           </ul>
@@ -102,7 +121,7 @@
       </div>
     </nav>
     <div class="form-container">
-      <form>
+      <form name="signupform">
         <div class="form-group">
           <label for="username">Username</label>
           <input
@@ -110,36 +129,54 @@
             class="form-control"
             id="flightNumber"
             placeholder="Type..."
+            name="uname"
+            required
+            minlength="5"
+            maxlength="20"
+            pattern="^[A-Za-z0-9]+$"
           />
+          <p id="uerror"></p>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
           <input
-            type="text"
+            type="email"
             class="form-control"
             id="terminalNumber"
             placeholder="Type..."
+            name="ename"
+            required
           />
+          <p id="eerror"></p>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
           <input
-            type="text"
+            type="password"
             class="form-control"
             id="terminalNumber"
             placeholder="Type..."
+            name="pname"
+            required
+            minlength="8"
+            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
           />
+          <p id="perror"></p>
         </div>
         <div class="form-group">
           <label for="confirmpassword">Confirm Password</label>
           <input
-            type="text"
+            type="password"
             class="form-control"
             id="terminalNumber"
             placeholder="Type..."
+            name="cname"
+            required
+            onkeyup="confirm();"
           />
+          <p id="cerror"></p>
         </div>
-        <button type="submit" class="btn btn-info btn-block">Submit</button>
+        <button id="sub" type="submit" class="btn btn-info btn-block" onclick="validate();">Submit</button>
       </form>
     </div>
     <div class="footer-text">
