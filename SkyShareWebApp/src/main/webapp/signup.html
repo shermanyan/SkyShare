@@ -53,22 +53,27 @@
         document.getElementById("perror").innerHTML = "";
         document.getElementById("cerror").innerHTML = "";
         if (document.signupform.uname.checkValidity() == false) {
-          document.getElementById("uerror").innerHTML = "<font color=\"red\">Username must be between 5 and 20 characters and contain no special characters.</font>";
+          document.getElementById("uerror").innerHTML =
+            '<font color="red">Username must be between 5 and 20 characters and contain no special characters.</font>';
         }
         if (document.signupform.ename.checkValidity() == false) {
-          document.getElementById("eerror").innerHTML = "<font color=\"red\">Invalid Email.</font>";
+          document.getElementById("eerror").innerHTML =
+            '<font color="red">Invalid Email.</font>';
         }
         if (document.signupform.pname.checkValidity() == false) {
-          document.getElementById("perror").innerHTML = "<font color=\"red\">Password must be at least 8 characters and contain a letter, number, and special character.</font>";
+          document.getElementById("perror").innerHTML =
+            '<font color="red">Password must be at least 8 characters and contain a letter, number, and special character.</font>';
         }
       }
 
       function confirm() {
-        if (document.signupform.cname.value != document.signupform.pname.value) {
-          document.getElementById("cerror").innerHTML = "<font color=\"red\">Passwords must match.</font>";
+        if (
+          document.signupform.cname.value != document.signupform.pname.value
+        ) {
+          document.getElementById("cerror").innerHTML =
+            '<font color="red">Passwords must match.</font>';
           document.getElementById("sub").disabled = true;
-        }
-        else {
+        } else {
           document.getElementById("cerror").innerHTML = "";
           document.getElementById("sub").disabled = false;
         }
@@ -78,7 +83,7 @@
   <body>
     <nav class="navbar navbar-expand-lg" style="background-color: #000000">
       <div class="container-fluid">
-        <a class="navbar-brand" style="color: #fff" href="./information.html"
+        <a class="navbar-brand" style="color: #fff" href="./index.html"
           >SkyShare.</a
         >
 
@@ -104,7 +109,7 @@
                 class="nav-link active"
                 aria-current="page"
                 style="color: #fff"
-                href="#"
+                href="./index.html"
                 onclick="{home()}"
                 >Home</a
               >
@@ -113,9 +118,9 @@
               <a
                 class="nav-link"
                 style="color: #fff"
-                href="#"
+                href="./login.html"
                 onclick="{login()}"
-                >Login/Sign Up</a
+                >Login</a
               >
             </li>
           </ul>
@@ -178,7 +183,14 @@
           />
           <p id="cerror"></p>
         </div>
-        <button id="sub" type="submit" class="btn btn-info btn-block" onclick="validate();">Submit</button>
+        <button
+          id="sub"
+          type="submit"
+          class="btn btn-info btn-block"
+          onclick="validate();"
+        >
+          Submit
+        </button>
       </form>
     </div>
     <div class="footer-text">
