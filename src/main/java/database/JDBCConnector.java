@@ -24,7 +24,7 @@ public class JDBCConnector {
 			e.printStackTrace();
 		}
 
-		return DriverManager.getConnection("jdbc:mysql://localhost/SkyShare?user=root&password=shermany");
+		return DriverManager.getConnection("jdbc:mysql://localhost/joeStocks?user=root&password=shermany");
 	}
 
 	/**
