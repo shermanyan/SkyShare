@@ -1,17 +1,18 @@
-
-CREATE SCHEMA `SkyShare` ;
+CREATE SCHEMA `SkyShare`;
 
 CREATE TABLE SkyShare.`groups`(
-    GroupID INT PRIMARY KEY,
+    GroupID INT AUTO_INCREMENT PRIMARY KEY,
     DepartureTime TIMESTAMP,
     PickupLocation TEXT
 );
 
 CREATE TABLE SkyShare.`users` (
-    UserID INT PRIMARY KEY,
-    FirstName VARCHAR(255),
-    LastName VARCHAR(255),
-    PhoneNumber BIGINT
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(255),
+    Password VARCHAR(255),
+    PhoneNumber BIGINT,
+    GroupID INT DEFAULT NULL,
+    FOREIGN KEY (`GroupID`) REFERENCES SkyShare.`groups`(`GroupID`)
 );
 
 CREATE TABLE SkyShare.`group_users` (
