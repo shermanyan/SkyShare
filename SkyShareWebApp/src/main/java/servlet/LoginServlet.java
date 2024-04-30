@@ -1,60 +1,61 @@
 package servlet;
 
-import javax.servlet.*;
-import com.google.gson.JsonObject;
+/**
+ * Servlet implementation class LoginServlet
+ */
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import database.JDBCConnector;
 import resources.User;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import com.google.gson.Gson;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
-	private static final long serialVersionUID = 1L;
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json");
-		
-		PrintWriter pw = response.getWriter();
-		Gson gson = new Gson();
-		
-		User user = gson.fromJson(request.getReader(), User.class);
-		String username = user.username;
-		String password = user.password;
-		
-		JsonObject jsonResponse = new JsonObject();
-		
-		if (infoMissing(username, password)) {
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			
-			jsonResponse.addProperty("error", "Username or password is missing");
-			jsonResponse.addProperty("success", false);
-		}
-		
-		else {
-			if (JDBCConnector.loginUser(username, password)) {
-				String user_id = JDBCConnector.getUserID(username, password);
-				
-				HttpSession session = request.getSession();
-				session.setAttribute("user_id", user_id);
-				
-				jsonResponse.addProperty("success", true);
-				jsonResponse.addProperty("user_id", user_id);
-			}
-		}
-		pw.write(gson.toJson(jsonResponse));
-		pw.close();
-	}
-	
-    public boolean infoMissing(String username, String password) {
-    	if (username == null || username.isBlank() || password == null || password.isBlank()) {
-    		return true;
-    	} return false;
+    /**
+     * Constructs a new LoginServlet.
+     */
+    public LoginServlet() {
+        super();
+    }
+
+    /**
+     * Handles the HTTP POST method for user login.
+     *
+     * @param request  username and password in JSON format
+     * @param response either "Incorrect username or password" or the User object in
+     *                 JSON format
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        System.out.println("Login");
+        User user = new Gson().fromJson(request.getReader(), User.class);
+        PrintWriter pw = response.getWriter();
+        String username = user.username;
+        String password = user.password;
+        Gson gson = new Gson();
+
+        try {
+            user = JDBCConnector.loginUser(username, password);
+            if (User.validateUser(user) == false) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                pw.write(gson.toJson("Incorrect username or password"));
+            } else {
+                response.setStatus(HttpServletResponse.SC_OK);
+                pw.write(gson.toJson(user));
+            }
+            pw.flush();
+        } catch (Exception e) {
+            throw new ServletException("Login failed", e);
+        }
     }
 }
