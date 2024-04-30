@@ -1,11 +1,13 @@
-package final_project_website_test;
-// TODO: This will need to change
+package servlet;
 
 import javax.servlet.*;
 import com.google.gson.JsonObject;
+
+import database.JDBCConnector;
+import resources.User;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import com.google.gson.Gson;

@@ -1,5 +1,4 @@
-package final_project_website_test;
-// TODO: This will need to change
+package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,6 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
+
+import database.JDBCConnector;
+import resources.User;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

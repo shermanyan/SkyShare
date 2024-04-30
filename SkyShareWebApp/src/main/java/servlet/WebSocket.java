@@ -1,3 +1,5 @@
+package servlet;
+
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
