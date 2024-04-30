@@ -14,14 +14,16 @@
 <div class="container">
   <aside class="sidebar">
     <div class="logo">
-      <a class="navbar-brand" style="color: #5300f9; text-decoration:none;" href="#">SkyShare.</a>
+      <a class="navbar-brand" href="information.html" style="color: #fbfbfb; text-decoration:none;" href="#">SkyShare.</a>
     </div>
-    <nav class="navigation">
-      <a href="#" class="nav-item active"><span class="icon"><i class="fas fa-house"></i></span>Chat</a>
-      <a href="#" class="nav-item"><span class="icon"><i class="fas fa-circle-info"></i></span>Flight Information</a>
-      <a href="#" class="nav-item"><span class="icon"><i class="fas fa-power-off"></i></span>Logout</a>
+    <div class="users-list">
+      <!-- Dynamically generated user list -->
+  </div>
+  <div class="location-change">
+      <input type="text" placeholder="Change Pickup Location" />
+      <button>Update</button>
+  </div>
       <!-- Add more nav items if needed -->
-    </nav>
     <div class="chat-groups">
       <div class="group">
         <img src="https://via.placeholder.com/50" alt="Group" class="group-img">
@@ -37,10 +39,8 @@
     <header class="chat-header">
       <!-- this is just some static data but the javascript functions have functionality to send and receive  -->
       <img src="https://via.placeholder.com/50" alt="Recipient" class="recipient-img">
-      <div class="recipient-info">
-        <h5 class="recipient-name">Tony Stark</h5>
-        <p class="last-seen">Last seen 4:33 AM</p>
-      </div>
+      <div id="group-departure-time">Loading departure time...</div>
+      <button class="leave-group-btn">Leave Group</button>
     </header>
     <div class="chat-messages">
       <div class="message received">
