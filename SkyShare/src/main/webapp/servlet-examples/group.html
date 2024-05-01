@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Group Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Group Test</h1>
+    <button id="getGroupsButton">Get Groups</button>
+    <p id="result"></p>
+
+    <form id="groupForm">
+        <label for="user_ID">User ID:</label><br>
+        <input type="number" id="user_ID" name="user_ID"><br>
+        <label for="group_ID">Group ID:</label><br>
+        <input type="number" id="group_ID" name="group_ID"><br>
+        <label for="join">Join:</label><br>
+        <input type="checkbox" id="join" name="join"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p id="join-result"></p>
+    <style>
+        table {
+            border-collapse: separate;
+            border-spacing: 10px;
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            text-align: left;
+            border: 1px solid black;
+
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById("groupForm").addEventListener('submit', function (event) {
+                event.preventDefault();
+
+
+                const user_ID = document.getElementById('user_ID').value;
+                const group_ID = document.getElementById('group_ID').value;
+                const join = document.getElementById('join').checked;
+
+                fetch("http://localhost:8080/SkyShare/GroupServlet", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ user_ID, group_ID, join }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("join-result").textContent = JSON.stringify(data);
+                    });
+            });
+
+            document.getElementById("getGroupsButton").addEventListener('click', function () {
+                fetch("http://localhost:8080/SkyShare/GroupServlet")
+                    .then(response => response.json())
+                    .then(data => {
+                        let table = document.createElement('table');
+                        let headerRow = document.createElement('tr');
+
+                        // Create table headers
+                        for (let key in data[0]) {
+                            let th = document.createElement('th');
+                            th.appendChild(document.createTextNode(key));
+                            headerRow.appendChild(th);
+                        }
+                        table.appendChild(headerRow);
+
+                        // Create table rows
+                        data.forEach(function (item) {
+                            let tr = document.createElement('tr');
+                            for (let key in item) {
+                                let td = document.createElement('td');
+                                let value = item[key];
+                                if (Array.isArray(value) && value.length > 0 && typeof value[0] === 'object') {
+                                    value = value.map(v => JSON.stringify(v)).join(', ');
+                                }
+                                td.appendChild(document.createTextNode(value));
+                                tr.appendChild(td);
+                            }
+                            table.appendChild(tr);
+                        });
+
+                        // Append the table to the result div
+                        let resultDiv = document.getElementById("result");
+                        while (resultDiv.firstChild) {
+                            resultDiv.removeChild(resultDiv.firstChild);
+                        }
+                        resultDiv.appendChild(table);
+                    });
+            });
+
+        });
+    </script>
+</body>
+
+</html>

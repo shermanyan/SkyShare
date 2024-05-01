@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="loginForm">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p id="result"></p>
+
+    <script>
+        $(document).ready(function() {
+            $("#loginForm").submit(function(event) {
+                event.preventDefault();
+
+                var user = {
+                    username: $("#username").val(),
+                    password: $("#password").val()
+                };
+
+                $.ajax({
+                    url: "http://localhost:8080/SkyShare/LoginServlet",
+                    type: "POST",
+                    data: JSON.stringify(user),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(response) {
+                        $("#result").text(JSON.stringify(response));
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
