@@ -17,7 +17,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - mv target/skyshare.war target/ROOT.war
+      - mv target/SkyShare.war target/ROOT.war
 
 artifacts:
   files:
