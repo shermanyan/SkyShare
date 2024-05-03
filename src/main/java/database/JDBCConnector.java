@@ -33,7 +33,7 @@ public class JDBCConnector {
 
 		System.out.println("user: " + user + " password: " + password + " url: " + url);
 		if (url == null || user == null || password == null) {
-			throw new SQLException("Database connection information is missing");
+			throw new SQLException("Database connection information is missing" + "{ user: " + user + " password: " + password + " url: " + url " }");
 		}
 
 		String jdbcURL = url + "?user=" + user + "&password=" + password;
@@ -48,7 +48,7 @@ public class JDBCConnector {
 	 * @return the ID of the newly added user, or -1 if the username already exists,
 	 *         or -2 if the phone number already exists
 	 */
-	public static int addUser(User user) throws SQLException{
+	public static int addUser(User user) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -87,7 +87,7 @@ public class JDBCConnector {
 			if (rs.next()) {
 				user.userID = rs.getInt(1);
 			}
- 
+
 		} finally {
 			try {
 				if (rs != null) {
