@@ -221,6 +221,9 @@
 
         const welcomeMessage = document.querySelector(".welcome-text");
 
+        console.log(isLoggedIn, username);
+        console.log(welcomeMessage);
+
         if (isLoggedIn && username) {
           welcomeMessage.textContent = `WELCOME, ${username}!`;
         } else {
@@ -245,7 +248,7 @@
         });
       });
 
-      document.addEventListener("DOMContentLoaded", () => {
+      window.addEventListener("load", () => {
         updateWelcomeMessage();
       });
     </script>
