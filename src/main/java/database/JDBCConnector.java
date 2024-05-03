@@ -28,11 +28,16 @@ public class JDBCConnector {
 			e.printStackTrace();
 		}
 
-		String user = System.getenv("JDBC_USER");
-		String password = System.getenv("JDBC_PASSWORD");
-		String url = System.getenv("JDBC_URL");
+		// String user = System.getenv("JDBC_USER");
+		// String password = System.getenv("JDBC_PASSWORD");
+		// String url = System.getenv("JDBC_URL");
+
+		String user = "root";
+		String password = "skyshare22";
+		String url = "jdbc:mysql://awseb-e-kgshp47exp-stack-awsebrdsdatabase-yve2qgxjeiut.c7asiigc2cjn.us-west-1.rds.amazonaws.com:3306/ebdb";
 
 		System.out.println("user: " + user + " password: " + password + " url: " + url);
+		
 		if (url == null || user == null || password == null) {
 			throw new SQLException("Database connection information is missing" + "{ user: " + user + " password: "
 					+ password + " url: " + url + " }");
@@ -59,7 +64,7 @@ public class JDBCConnector {
 			conn = getConnection();
 
 			// Check if username already exists
-			ps = conn.prepareStatement("SELECT * FROM SkyShare.users WHERE Username = ?");
+			ps = conn.prepareStatement("SELECT * FROM `users` WHERE Username = ?");
 			ps.setString(1, user.username);
 			rs = ps.executeQuery();
 			if (rs.next()) {
@@ -67,7 +72,7 @@ public class JDBCConnector {
 			}
 
 			// Check if phone number already exists
-			ps = conn.prepareStatement("SELECT * FROM SkyShare.users WHERE PhoneNumber = ?");
+			ps = conn.prepareStatement("SELECT * FROM `users` WHERE PhoneNumber = ?");
 			ps.setString(1, user.phoneNumber);
 			rs = ps.executeQuery();
 			if (rs.next()) {
@@ -125,7 +130,7 @@ public class JDBCConnector {
 
 		try {
 			conn = getConnection();
-			ps = conn.prepareStatement("SELECT * FROM SkyShare.users WHERE Username = ? AND Password = ?");
+			ps = conn.prepareStatement("SELECT * FROM `users` WHERE Username = ? AND Password = ?");
 			ps.setString(1, username);
 			ps.setString(2, password);
 			rs = ps.executeQuery();
@@ -239,7 +244,7 @@ public class JDBCConnector {
 		try {
 			conn = getConnection();
 
-			ps = conn.prepareStatement("INSERT INTO SkyShare.groups (DepartureTime, PickupLocation) VALUES (?, ?)");
+			ps = conn.prepareStatement("INSERT INTO `groups` (DepartureTime, PickupLocation) VALUES (?, ?)");
 			ps.setString(1, group.departureTime);
 			ps.setString(2, group.pickupLocation);
 			ps.executeUpdate();
@@ -289,7 +294,7 @@ public class JDBCConnector {
 		try {
 			conn = getConnection();
 
-			ps = conn.prepareStatement("UPDATE SkyShare.users SET GroupID = ? WHERE UserID = ?");
+			ps = conn.prepareStatement("UPDATE `users` SET GroupID = ? WHERE UserID = ?");
 			ps.setInt(1, groupID);
 			ps.setInt(2, userID);
 			ps.executeUpdate();
@@ -331,7 +336,7 @@ public class JDBCConnector {
 		try {
 			conn = getConnection();
 
-			ps = conn.prepareStatement("UPDATE SkyShare.users SET GroupID = -1 WHERE UserID = ?");
+			ps = conn.prepareStatement("UPDATE `users` SET GroupID = -1 WHERE UserID = ?");
 			ps.setInt(1, userID);
 			ps.executeUpdate();
 
@@ -373,7 +378,6 @@ public class JDBCConnector {
 		return groups;
 	}
 
-
 	/**
 	 * Returns a list of all users and groups in the database.
 	 *
@@ -387,7 +391,7 @@ public class JDBCConnector {
 		try {
 			conn = getConnection();
 			// Retrieve users
-			ps = conn.prepareStatement("SELECT * FROM SkyShare.users");
+			ps = conn.prepareStatement("SELECT * FROM `users`");
 			rs = ps.executeQuery();
 			List<User> users = new ArrayList<>();
 			while (rs.next()) {
@@ -402,7 +406,7 @@ public class JDBCConnector {
 			data.put("users", users);
 
 			// Retrieve groups
-			ps = conn.prepareStatement("SELECT * FROM SkyShare.groups");
+			ps = conn.prepareStatement("SELECT * FROM `groups`");
 			rs = ps.executeQuery();
 			List<Group> groups = new ArrayList<>();
 			while (rs.next()) {

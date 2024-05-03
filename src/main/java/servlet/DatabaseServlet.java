@@ -29,13 +29,13 @@ public class DatabaseServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Map<String, Object> data = JDBCConnector.getAllData();
-        Map<String, Object> data = new HashMap<>();
+         Map<String, Object> data = JDBCConnector.getAllData();
+//        Map<String, Object> data = new HashMap<>();
 
         // Get user, password, and url from environment variables
-        String user = System.getenv("JDBC_USER");
-        String password = System.getenv("JDBC_PASSWORD");
-        String url = System.getenv("JDBC_URL");
+		String user = "root";
+		String password = "skyshare22";
+		String url = "jdbc:mysql://awseb-e-kgshp47exp-stack-awsebrdsdatabase-yve2qgxjeiut.c7asiigc2cjn.us-west-1.rds.amazonaws.com:3306/ebdb";
 
         // Add user, password, and url to data
         data.put("user", user);
