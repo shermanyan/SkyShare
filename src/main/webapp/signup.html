@@ -18,6 +18,7 @@
       body {
         background-color: #000000;
       }
+
       .form-container {
         background-color: #343a40;
         padding: 20px;
@@ -27,18 +28,22 @@
         margin: auto;
         margin-top: 100px;
       }
+
       .form-container .form-group label {
         color: white;
       }
+
       .form-container .btn {
         background-color: #007bff;
         border: none;
       }
+
       .footer-text {
         text-align: center;
         color: #6c757d;
         margin-top: 20px;
       }
+
       .navbar-brand {
         font-size: 50px;
         font-family: "Poppins", sans-serif;
@@ -80,6 +85,7 @@
       }
     </script>
   </head>
+
   <body>
     <nav class="navbar navbar-expand-lg" style="background-color: #000000">
       <div class="container-fluid">
@@ -138,9 +144,6 @@
             placeholder="Type..."
             name="uname"
             required
-            minlength="5"
-            maxlength="20"
-            pattern="^[A-Za-z0-9]+$"
           />
           <p id="uerror"></p>
         </div>
@@ -165,8 +168,6 @@
             placeholder="Type..."
             name="pname"
             required
-            minlength="8"
-            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
           />
           <p id="perror"></p>
         </div>
@@ -199,7 +200,7 @@
       <p>©Team 22</p>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
@@ -220,8 +221,15 @@
             data: JSON.stringify(user),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
+     
             success: function (response) {
-              $("#result").text(JSON.stringify(response));
+
+                  $("#result").text(JSON.stringify(response));
+              
+            },
+            error: function (response) {
+
+                 alert("Username or phone number already registered");
             },
           });
         });

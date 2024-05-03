@@ -47,9 +47,11 @@ public class LoginServlet extends HttpServlet {
         try {
             user = JDBCConnector.loginUser(username, password);
             if (User.validateUser(user) == false) {
+                System.out.println("Login Failed");
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 pw.write(gson.toJson("Incorrect username or password"));
             } else {
+                System.out.println("LoginSucess:" + user.userID);
                 response.setStatus(HttpServletResponse.SC_OK);
                 pw.write(gson.toJson(user));
             }

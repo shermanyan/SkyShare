@@ -46,7 +46,7 @@
         font-style: normal;
       }
     </style>
-    <script>
+    <!-- <script>
       function validate() {
         document.getElementById("uerror").innerHTML = "";
         document.getElementById("perror").innerHTML = "";
@@ -59,7 +59,7 @@
             '<font color="red">Password must be at least 8 characters and contain a letter, number, and special character.</font>';
         }
       }
-    </script>
+    </script> -->
   </head>
   <body>
     <nav class="navbar navbar-expand-lg" style="background-color: #000000">
@@ -119,9 +119,6 @@
             name="uname"
             placeholder="Type..."
             required
-            minlength="5"
-            maxlength="20"
-            pattern="^[A-Za-z0-9]+$"
           />
           <p id="uerror"></p>
         </div>
@@ -134,8 +131,6 @@
             name="pname"
             placeholder="Type..."
             required
-            minlength="8"
-            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
           />
           <p id="perror"></p>
         </div>
