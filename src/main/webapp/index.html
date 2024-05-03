@@ -121,12 +121,23 @@
                 >Home</a
               >
             </li>
-            <li class="nav-item" style="display: block">
+            <!-- Display Logout option only if user is logged in -->
+            <li class="nav-item" id="logoutOption" style="display: none">
+              <a
+                class="nav-link"
+                style="color: #fff"
+                href="#"
+                onclick="logout()"
+                >Logout</a
+              >
+            </li>
+            <!-- Display Login and Signup options only if user is not logged in -->
+            <li class="nav-item" id="loginOption">
               <a class="nav-link" style="color: #fff" href="./login.html"
                 >Login</a
               >
             </li>
-            <li class="nav-item" style="display: block">
+            <li class="nav-item" id="signupOption">
               <a class="nav-link" style="color: #fff" href="./signup.html"
                 >Sign Up</a
               >
@@ -228,6 +239,28 @@
         }
       };
 
+      const updateNavBar = () => {
+        const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+
+        if (isLoggedIn) {
+          document.getElementById("logoutOption").style.display = "block";
+          document.getElementById("loginOption").style.display = "none";
+          document.getElementById("signupOption").style.display = "none";
+        } else {
+          document.getElementById("logoutOption").style.display = "none";
+          document.getElementById("loginOption").style.display = "block";
+          document.getElementById("signupOption").style.display = "block";
+        }
+      };
+
+      const logout = () => {
+        event.preventDefault();
+        sessionStorage.removeItem("isLoggedIn");
+        sessionStorage.removeItem("userId");
+        sessionStorage.removeItem("balance");
+        window.location.href = "login.html";
+      };
+
       const redirectBasedOnLoginStatus = () => {
         const isLoggedIn = sessionStorage.getItem("isLoggedIn");
 
@@ -246,6 +279,7 @@
       });
 
       document.addEventListener("DOMContentLoaded", () => {
+        updateNavBar();
         updateWelcomeMessage();
       });
     </script>
