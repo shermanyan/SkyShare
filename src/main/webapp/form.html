@@ -184,8 +184,7 @@
           })
             .then((response) => response.json())
             .then((data) => {
-              document.getElementById("result").textContent =
-                JSON.stringify(data);
+              window.location.href = "matching.html";
             });
         });
       });
