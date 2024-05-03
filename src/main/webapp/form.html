@@ -119,14 +119,14 @@
       </div>
     </nav>
     <div class="form-container">
-      <form name="flightform">
+      <form name="flightform" id="flightform">
         <div class="form-group">
-          <label for="flightNumber">Flight Number</label>
+          <label for="flightNumber">Departure Time (YYYY-MM-DD HH:MM:SS)</label>
           <input
             name="fname"
             type="text"
             class="form-control"
-            id="flightNumber"
+            id="departureTime"
             placeholder="Type..."
             required
             pattern="^[A-Z0-9]+$"
@@ -134,28 +134,22 @@
         </div>
         <p id="ferror"></p>
         <div class="form-group">
-          <label for="terminalNumber">Terminal Number</label>
-          <input
+          <label for="terminalNumber">Pickup Location</label>
+          <select
             name="tname"
-            type="text"
             class="form-control"
-            id="terminalNumber"
-            placeholder="Type..."
+            id="pickupLocation"
             required
-            pattern="^[1-8B]$"
-          />
+          >
+            <option value="">Select Pickup Location</option>
+            <option value="LAX_IT">LAX_IT</option>
+            <option value="LAX_TA">LAX_TA</option>
+            <option value="LAX_TB">LAX_TB</option>
+            <option value="LAX_TC">LAX_TC</option>
+            <option value="LAX_TD">LAX_TD</option>
+          </select>
         </div>
         <p id="terror"></p>
-        <div class="form-group">
-          <label for="arrivalTime">LAX Arrival Time</label>
-          <input
-            type="time"
-            class="form-control"
-            id="arrivalTime"
-            placeholder="Type..."
-            required
-          />
-        </div>
         <button
           type="submit"
           class="btn btn-info btn-block"
@@ -173,6 +167,29 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script>
+      $(document).ready(function () {
+        $("#flightform").submit(function (event) {
+          event.preventDefault();
+
+          const departureTime = document.getElementById("departureTime").value;
+          const pickupLocation =
+            document.getElementById("pickupLocation").value;
+
+          fetch("http://localhost:8080/SkyShare/NewGroupServlet", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ departureTime, pickupLocation }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              document.getElementById("result").textContent =
+                JSON.stringify(data);
+            });
+        });
+      });
+
       const updateNavBar = () => {
         const isLoggedIn = sessionStorage.getItem("isLoggedIn");
 
