@@ -81,7 +81,7 @@ public class JDBCConnector {
 
 			// Insert new user
 			ps = conn.prepareStatement(
-					"INSERT INTO SkyShare.users (Username, Password, PhoneNumber, GroupID) VALUES (?, ?, ?, ?)",
+					"INSERT INTO `users` (Username, Password, PhoneNumber, GroupID) VALUES (?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, user.username);
 			ps.setString(2, user.password);
