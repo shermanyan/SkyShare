@@ -136,6 +136,9 @@
       </div>
     </nav>
     <div class="container">
+      <h1 class="welcome-text" style="color: #fff; margin-top: 20px">
+        WELCOME!
+      </h1>
       <div class="row">
         <div class="col-md-6">
           <div class="card information-card">
@@ -213,6 +216,19 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script>
+      const updateWelcomeMessage = () => {
+        const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+        const username = sessionStorage.getItem("username");
+
+        const welcomeMessage = document.querySelector(".welcome-text");
+
+        if (isLoggedIn && username) {
+          welcomeMessage.textContent = `WELCOME, ${username}!`;
+        } else {
+          welcomeMessage.textContent = "WELCOME!";
+        }
+      };
+
       const redirectBasedOnLoginStatus = () => {
         const isLoggedIn = sessionStorage.getItem("isLoggedIn");
 
@@ -228,6 +244,10 @@
         button.addEventListener("click", () => {
           redirectBasedOnLoginStatus();
         });
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        updateWelcomeMessage();
       });
     </script>
   </body>
