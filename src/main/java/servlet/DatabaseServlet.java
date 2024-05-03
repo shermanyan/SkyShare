@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import com.google.gson.Gson;
 
@@ -28,7 +29,8 @@ public class DatabaseServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Map<String, Object> data = JDBCConnector.getAllData();
+        // Map<String, Object> data = JDBCConnector.getAllData();
+        Map<String, Object> data = new HashMap<>();
 
         // Get user, password, and url from environment variables
         String user = System.getenv("JDBC_USER");
