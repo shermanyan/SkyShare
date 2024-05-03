@@ -149,13 +149,15 @@
       };
 
       const logout = () => {
-        event.preventDefault();
-        sessionStorage.removeItem("isLoggedIn");
-        sessionStorage.removeItem("userId");
-        sessionStorage.removeItem("balance");
-        window.location.href = "login.html";
-      };
-
+          event.preventDefault();
+          sessionStorage.removeItem("isLoggedIn");
+          sessionStorage.removeItem("userID");
+          sessionStorage.removeItem("groupID");
+          sessionStorage.removeItem("username");
+          window.location.href = "login.html";
+        };
+        
+        
       document.addEventListener("DOMContentLoaded", () => {
         updateNavBar();
       });

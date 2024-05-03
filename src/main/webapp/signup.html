@@ -225,7 +225,7 @@
             success: function (response) {
               sessionStorage.setItem("userID", response.userID);
               sessionStorage.setItem("username", response.username);
-              sessionStorage.setItem("userLoggedIn", true);
+              sessionStorage.setItem("isLoggedIn", true);
 
               window.location.href = "index.html";
             },

@@ -256,8 +256,9 @@
       const logout = () => {
         event.preventDefault();
         sessionStorage.removeItem("isLoggedIn");
-        sessionStorage.removeItem("userId");
-        sessionStorage.removeItem("balance");
+        sessionStorage.removeItem("userID");
+        sessionStorage.removeItem("groupID");
+        sessionStorage.removeItem("username");
         window.location.href = "login.html";
       };
 
