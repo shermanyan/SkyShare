@@ -221,19 +221,16 @@
             data: JSON.stringify(user),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-     
-            success: function (response) {
 
-                sessionStorage.setItem("userID", response.userID);
-                sessionStorage.setItem("username", response.username);
-                sessionStorage.setItem("userLoggedIn", true);
-                
-                window.location.href = "index.html";
-              
+            success: function (response) {
+              sessionStorage.setItem("userID", response.userID);
+              sessionStorage.setItem("username", response.username);
+              sessionStorage.setItem("userLoggedIn", true);
+
+              window.location.href = "index.html";
             },
             error: function (response) {
-
-                 alert("Username or phone number already registered");
+              alert("Username or phone number already registered");
             },
           });
         });
