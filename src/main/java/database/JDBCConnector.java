@@ -3,6 +3,7 @@ package database;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import resources.*;
@@ -372,4 +373,64 @@ public class JDBCConnector {
 		return groups;
 	}
 
+
+	/**
+	 * Returns a list of all users and groups in the database.
+	 *
+	 * @return a map containing the list of users and groups
+	 */
+	public static Map<String, Object> getAllData() {
+		Map<String, Object> data = new HashMap<>();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			// Retrieve users
+			ps = conn.prepareStatement("SELECT * FROM SkyShare.users");
+			rs = ps.executeQuery();
+			List<User> users = new ArrayList<>();
+			while (rs.next()) {
+				int userID = rs.getInt("UserID");
+				String username = rs.getString("Username");
+				String password = rs.getString("Password");
+				String phoneNumber = rs.getString("PhoneNumber");
+				int groupID = rs.getInt("GroupID");
+				User user = new User(userID, username, password, phoneNumber, groupID);
+				users.add(user);
+			}
+			data.put("users", users);
+
+			// Retrieve groups
+			ps = conn.prepareStatement("SELECT * FROM SkyShare.groups");
+			rs = ps.executeQuery();
+			List<Group> groups = new ArrayList<>();
+			while (rs.next()) {
+				int groupID = rs.getInt("GroupID");
+				Timestamp departureTime = rs.getTimestamp("DepartureTime");
+				String pickupLocation = rs.getString("PickupLocation");
+				Group group = new Group(groupID, departureTime.toString(), pickupLocation);
+				groups.add(group);
+			}
+			data.put("groups", groups);
+		} catch (SQLException e) {
+			System.out.println("SQL Exception in getAllData. ");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				System.out.println("sqle: " + e.getMessage());
+			}
+		}
+		return data;
+	}
 }

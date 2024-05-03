@@ -1,11 +1,9 @@
 package servlet;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import database.JDBCConnector;
 import resources.Group;
-import resources.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +15,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Map;
 
 @WebServlet("/GroupServlet")
 public class GroupServlet extends HttpServlet {
@@ -58,6 +55,7 @@ public class GroupServlet extends HttpServlet {
 		public String group_ID;
 		public boolean join;
 	}
+
 	/**
 	 * Handles the HTTP POST request.
 	 *
@@ -68,7 +66,6 @@ public class GroupServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
 		// Read the request body into a string
 		BufferedReader reader = request.getReader();
 		StringBuilder sb = new StringBuilder();
