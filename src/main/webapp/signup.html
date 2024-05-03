@@ -128,13 +128,13 @@
       </div>
     </nav>
     <div class="form-container">
-      <form name="signupform">
+      <form name="signupform" id="signupform">
         <div class="form-group">
           <label for="username">Username</label>
           <input
             type="text"
             class="form-control"
-            id="flightNumber"
+            id="username"
             placeholder="Type..."
             name="uname"
             required
@@ -149,7 +149,7 @@
           <input
             type="tel"
             class="form-control"
-            id="terminalNumber"
+            id="phone"
             placeholder="Type..."
             name="ename"
             required
@@ -161,7 +161,7 @@
           <input
             type="password"
             class="form-control"
-            id="terminalNumber"
+            id="password"
             placeholder="Type..."
             name="pname"
             required
@@ -175,7 +175,7 @@
           <input
             type="password"
             class="form-control"
-            id="terminalNumber"
+            id="confirmpassword"
             placeholder="Type..."
             name="cname"
             required
@@ -193,6 +193,8 @@
         </button>
       </form>
     </div>
+    <!--FOR TESTING-->
+    <p id="result"></p>
     <div class="footer-text">
       <p>©Team 22</p>
     </div>
@@ -200,5 +202,30 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#signupform").submit(function (event) {
+          event.preventDefault();
+
+          var user = {
+            username: $("#username").val(),
+            password: $("#password").val(),
+            phoneNumber: $("#phone").val(),
+          };
+
+          $.ajax({
+            url: "http://localhost:8080/SkyShare/SignUpServlet",
+            type: "POST",
+            data: JSON.stringify(user),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+              $("#result").text(JSON.stringify(response));
+            },
+          });
+        });
+      });
+    </script>
   </body>
 </html>
