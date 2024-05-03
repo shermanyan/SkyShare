@@ -68,7 +68,6 @@
         <a class="navbar-brand" style="color: #fff" href="./index.html"
           >SkyShare.</a
         >
-
         <button
           class="navbar-toggler"
           type="button"
@@ -80,7 +79,6 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div
           class="collapse navbar-collapse justify-content-end"
           id="navbarNav"
@@ -92,19 +90,28 @@
                 aria-current="page"
                 style="color: #fff"
                 href="./index.html"
-                onclick="{home()}"
                 >Home</a
               >
             </li>
-            <li class="nav-item" style="display: block">
-              <!--TODO: make dynamic based on user logged in status-->
-              <!--TODO: Need to log user out-->
+            <!-- Display Logout option only if user is logged in -->
+            <li class="nav-item" id="logoutOption" style="display: none">
               <a
                 class="nav-link"
                 style="color: #fff"
-                href="./index.html"
-                onclick="{login()}"
+                href="#"
+                onclick="logout()"
                 >Logout</a
+              >
+            </li>
+            <!-- Display Login and Signup options only if user is not logged in -->
+            <li class="nav-item" id="loginOption">
+              <a class="nav-link" style="color: #fff" href="./login.html"
+                >Login</a
+              >
+            </li>
+            <li class="nav-item" id="signupOption">
+              <a class="nav-link" style="color: #fff" href="./signup.html"
+                >Sign Up</a
               >
             </li>
           </ul>
@@ -165,5 +172,32 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+      const updateNavBar = () => {
+        const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+
+        if (isLoggedIn) {
+          document.getElementById("logoutOption").style.display = "block";
+          document.getElementById("loginOption").style.display = "none";
+          document.getElementById("signupOption").style.display = "none";
+        } else {
+          document.getElementById("logoutOption").style.display = "none";
+          document.getElementById("loginOption").style.display = "block";
+          document.getElementById("signupOption").style.display = "block";
+        }
+      };
+
+      const logout = () => {
+        event.preventDefault();
+        sessionStorage.removeItem("isLoggedIn");
+        sessionStorage.removeItem("userId");
+        sessionStorage.removeItem("balance");
+        window.location.href = "login.html";
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        updateNavBar();
+      });
+    </script>
   </body>
 </html>
