@@ -33,7 +33,8 @@ public class JDBCConnector {
 
 		System.out.println("user: " + user + " password: " + password + " url: " + url);
 		if (url == null || user == null || password == null) {
-			throw new SQLException("Database connection information is missing" + "{ user: " + user + " password: " + password + " url: " + url " }");
+			throw new SQLException("Database connection information is missing" + "{ user: " + user + " password: "
+					+ password + " url: " + url + " }");
 		}
 
 		String jdbcURL = url + "?user=" + user + "&password=" + password;
