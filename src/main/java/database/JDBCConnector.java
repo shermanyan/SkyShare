@@ -17,8 +17,9 @@ public class JDBCConnector {
 	 * Returns a connection to the MySQL database.
 	 *
 	 * @return the database connection
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
+
 	private static Connection getConnection() throws SQLException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -26,7 +27,18 @@ public class JDBCConnector {
 			e.printStackTrace();
 		}
 
-		return DriverManager.getConnection("jdbc:mysql://localhost/SkyShare?user=root&password=shermany");
+		String user = System.getenv("JDBC_USER");
+		String password = System.getenv("JDBC_PASSWORD");
+		String url = System.getenv("JDBC_URL");
+
+		System.out.println("user: " + user + " password: " + password + " url: " + url);
+		if (url == null || user == null || password == null) {
+			throw new SQLException("Database connection information is missing");
+		}
+
+		String jdbcURL = url + "?user=" + user + "&password=" + password;
+
+		return DriverManager.getConnection(jdbcURL);
 	}
 
 	/**
@@ -52,7 +64,6 @@ public class JDBCConnector {
 				return -1; // Username already exists
 			}
 
-
 			// Check if phone number already exists
 			ps = conn.prepareStatement("SELECT * FROM SkyShare.users WHERE PhoneNumber = ?");
 			ps.setString(1, user.phoneNumber);
@@ -71,7 +82,7 @@ public class JDBCConnector {
 			ps.setInt(4, user.groupID);
 			ps.executeUpdate();
 
-            rs = ps.executeQuery("SELECT LAST_INSERT_ID()");
+			rs = ps.executeQuery("SELECT LAST_INSERT_ID()");
 
 			if (rs.next()) {
 				user.userID = rs.getInt(1);
@@ -164,7 +175,8 @@ public class JDBCConnector {
 		try {
 			conn = getConnection();
 
-			ps = conn.prepareStatement("SELECT g.*, u.* FROM `users` u RIGHT JOIN `groups` g ON u.GroupID = g.GroupID WHERE g.GroupID > 0");
+			ps = conn.prepareStatement(
+					"SELECT g.*, u.* FROM `users` u RIGHT JOIN `groups` g ON u.GroupID = g.GroupID WHERE g.GroupID > 0");
 			rs = ps.executeQuery();
 
 			Map<Integer, Group> groupMap = new HashMap<>();
@@ -225,7 +237,6 @@ public class JDBCConnector {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-
 		try {
 			conn = getConnection();
 
@@ -234,7 +245,7 @@ public class JDBCConnector {
 			ps.setString(2, group.pickupLocation);
 			ps.executeUpdate();
 
-            rs = ps.executeQuery("SELECT LAST_INSERT_ID()");
+			rs = ps.executeQuery("SELECT LAST_INSERT_ID()");
 
 			if (rs.next()) {
 				group.groupID = rs.getInt(1);
@@ -269,7 +280,7 @@ public class JDBCConnector {
 	 * @param groupID the ID of the group
 	 */
 	public static void joinGroup(int userID, int groupID) {
-		
+
 		System.out.println("Attempt User " + userID + " joined group " + groupID);
 
 		Connection conn = null;
@@ -305,13 +316,14 @@ public class JDBCConnector {
 		System.out.println("Finish User " + userID + " joined group " + groupID);
 
 	}
+
 	/**
 	 * Removes a user from a group.
 	 *
 	 * @param userID the ID of the user
 	 */
 	public static void leaveGroup(int userID, int groupID) {
-		
+
 		System.out.println("Attempt User " + userID + " leave group " + groupID);
 
 		Connection conn = null;
@@ -348,7 +360,7 @@ public class JDBCConnector {
 	 * Returns a list of groups that match the specified departure time and pickup
 	 * location.
 	 *
-	 * @param departureTime the departure time of the groups
+	 * @param departureTime  the departure time of the groups
 	 * @param pickupLocation the pickup location of the groups
 	 * @return the list of groups that match the specified departure time and pickup
 	 *         location
@@ -358,7 +370,7 @@ public class JDBCConnector {
 
 		System.out.print("groups" + groups.toString());
 		MatchingAlgo.match(groups, departureTime, pickupLocation);
-	
+
 		return groups;
 	}
 
