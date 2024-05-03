@@ -109,13 +109,13 @@
       </div>
     </nav>
     <div class="form-container">
-      <form name="loginform">
+      <form name="loginform" id="loginform">
         <div class="form-group">
           <label for="username">Username</label>
           <input
             type="text"
             class="form-control"
-            id="flightNumber"
+            id="username"
             name="uname"
             placeholder="Type..."
             required
@@ -127,7 +127,7 @@
           <input
             type="password"
             class="form-control"
-            id="terminalNumber"
+            id="password"
             name="pname"
             placeholder="Type..."
             required
@@ -150,5 +150,31 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#loginform").submit(function (event) {
+          event.preventDefault();
+
+          var user = {
+            username: $("#username").val(),
+            password: $("#password").val(),
+          };
+
+          $.ajax({
+            url: "http://localhost:8080/SkyShare/LoginServlet",
+            type: "POST",
+            data: JSON.stringify(user),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+              $("#result").text(JSON.stringify(response));
+            },
+            error: function (response) {
+              alert("Username or password do not match");
+            },
+          });
+        });
+      });
+    </script>
   </body>
 </html>
