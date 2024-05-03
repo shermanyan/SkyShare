@@ -48,7 +48,7 @@ public class JDBCConnector {
 	 * @return the ID of the newly added user, or -1 if the username already exists,
 	 *         or -2 if the phone number already exists
 	 */
-	public static int addUser(User user) {
+	public static int addUser(User user) throws SQLException{
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -87,10 +87,7 @@ public class JDBCConnector {
 			if (rs.next()) {
 				user.userID = rs.getInt(1);
 			}
-
-		} catch (SQLException e) {
-			System.out.println("SQL Exception in sign up. ");
-			e.printStackTrace();
+ 
 		} finally {
 			try {
 				if (rs != null) {

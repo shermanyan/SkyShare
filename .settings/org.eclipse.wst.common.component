@@ -29,9 +29,6 @@
         
         
         <property name="java-output-path" value="/SkyShare/target/classes"/>
-                                
-        
-        
         <property name="context-root" value="SkyShare"/>
                                     
     
