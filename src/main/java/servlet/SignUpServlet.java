@@ -26,7 +26,7 @@ public class SignUpServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Sign Up");
+		System.out.println("Sign Up Attempt");
 		PrintWriter pw = response.getWriter();
 		Gson gson = new Gson();
 
@@ -36,14 +36,19 @@ public class SignUpServlet extends HttpServlet {
 			int result = JDBCConnector.addUser(user);
 
 			if (result == -1) {
+				
 				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 				pw.write("Username already exists");
+				System.out.println("Username already exists");
 			} else if (result == -2) {
 				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 				pw.write("Phone number already exists");
+				System.out.println("Phone number already exists");
 			} else {
 				response.setStatus(HttpServletResponse.SC_OK);
 				pw.write(gson.toJson(user));
+				System.out.println("Signup Success" + user.userID);
+				
 			}
 			pw.flush();
 
