@@ -134,20 +134,14 @@
           />
           <p id="perror"></p>
         </div>
-        <button
-          type="submit"
-          class="btn btn-info btn-block"
-          onclick="validate();"
-        >
-          Submit
-        </button>
+        <button type="submit" class="btn btn-info btn-block">Submit</button>
       </form>
     </div>
     <div class="footer-text">
       <p>©Team 22</p>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script>
@@ -167,7 +161,12 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
-              $("#result").text(JSON.stringify(response));
+              sessionStorage.setItem("userID", response.userID);
+              sessionStorage.setItem("groupID", response.groupID);
+              sessionStorage.setItem("username", response.username);
+              sessionStorage.setItem("userLoggedIn", true);
+
+              window.location.href = "form.html";
             },
             error: function (response) {
               alert("Username or password do not match");

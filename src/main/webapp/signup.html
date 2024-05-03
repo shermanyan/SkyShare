@@ -224,7 +224,11 @@
      
             success: function (response) {
 
-                  $("#result").text(JSON.stringify(response));
+                sessionStorage.setItem("userID", response.userID);
+                sessionStorage.setItem("username", response.username);
+                sessionStorage.setItem("userLoggedIn", true);
+                
+                window.location.href = "index.html";
               
             },
             error: function (response) {
