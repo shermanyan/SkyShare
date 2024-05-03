@@ -18,9 +18,12 @@ document.getElementById("login-form").addEventListener("submit", function (event
 			
 			var response = JSON.parse(xhttp.responseText);
 
+			alert("Welcome, " + response.username + " " + response.groupID + " " + response.userID);
 			// Get the user_id, stored for the current session,
 			// and let the program know there is a logged in user
-			sessionStorage.setItem("user_id", response.user_id);
+			sessionStorage.setItem("userID", response.userID);
+			sessionStorage.setItem("groupID", response.groupID);
+			sessionStorage.setItem("username", response.username);
 			sessionStorage.setItem("userLoggedIn", true);
 
 			// Send the user to set up a ride request
