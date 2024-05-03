@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sky Share</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #000000;
+        font-family: "Poppins", sans-serif;
+   
+      }
+
+      .container {
+        padding: 20px;
+        border-radius: 5px;
+        color: white;
+        margin: auto;
+        margin-top: 50px;
+      }
+
+      .form-container .form-group label {
+        color: white;
+      }
+
+      .form-container .btn {
+        background-color: #007bff;
+        border: none;
+      }
+
+      .footer-text {
+        text-align: center;
+        color: #6c757d;
+        margin-top: 20px;
+      }
+      .btn-primary {
+    	color: #fff;
+    	background-color: #5063ee;
+   	 	border-color: #5063ee;
+		}
+
+      .navbar-brand {
+        font-size: 50px;
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      .information-card {
+        background-color: #243447;
+        border: none;
+      }
+
+      .information-card .card-body {
+        text-align: center;
+      }
+
+      .list-card {
+        background-color: #243447;
+        border: none;
+        color: white;
+        margin-top: 20px;
+      }
+
+      ol {
+        margin-top: 10px;
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      .card-img {
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+      }
+
+      .row img {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #000000">
+      <div class="container-fluid">
+        <a class="navbar-brand" style="color: #fff" href="./index.html"
+          >SkyShare.</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav navbar-custom">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                style="color: #fff"
+                href="./index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item" style="display: block">
+              <a class="nav-link" style="color: #fff" href="./login.html"
+                >Login</a
+              >
+            </li>
+            <li class="nav-item" style="display: block">
+              <a class="nav-link" style="color: #fff" href="./signup.html"
+                >Sign Up</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card information-card">
+            <div class="card-body">
+              <p class="information">
+                Welcome to SkyShare! Connecting Students with Reliable and
+                Affordable Airport Rides At SkyShare, we understand the
+                challenges of getting to and from the airport as a college
+                student. Whether you are flying home for a break, traveling for
+                a conference, or going to have fun in Cabo, we make your airport
+                commute easy and economical. Join the SkyShare community today
+                to share rides with fellow USC students. Save on travel, meet
+                new friends, and enjoy the convenience of planning your trips
+                with just a few clicks. Safety First: We prioritize your safety
+                with verified profiles and easy communication directly through
+                the app. Ready to simplify your travel plans? Download SkyShare
+                now and start riding smart!
+              </p>
+              <!--TODO: if user is logged in then get started goes to form page else goes to login/signup page-->
+              <a href="./form.html" class="btn btn-primary">Get Started</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <img
+            src="./img/airport-image.png"
+            class="img-fluid card-img"
+            alt="Image 1"
+          />
+        </div>
+      </div>
+      <div class="mt-4"></div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <img
+            src="./img/person-car-image.png"
+            class="img-fluid card-img"
+            alt="Image 2"
+          />
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+          <div class="card list-card">
+            <div class="card-body text-center">
+              <ol>
+                <li>
+                  Sign Up: Create your free account using your college email.
+                </li>
+                <li>
+                  Find or Offer a Ride: Search for a ride on your date of travel
+                  or offer a seat in your car.
+                </li>
+                <li>
+                  Book & Share: Secure your seat through our app and coordinate
+                  with your ride companions.
+                </li>
+                <li>
+                  Travel Together: Meet up at your designated campus location
+                  and enjoy your ride to the airport.
+                </li>
+              </ol>
+              <div class="mt-3">
+                <!--TODO: if user is logged in then get started goes to form page else goes to login/signup page-->
+                <a href="./form.html" class="btn btn-primary">Get Started</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-text">
+      <p>©Team 22</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

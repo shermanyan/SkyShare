@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+    commands:
+      - echo Installing dependencies...
+      - mvn install
+  pre_build:
+    commands:
+      - echo Pre-build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn clean install -DskipTests
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - mv target/SkyShare.war target/ROOT.war
+
+artifacts:
+  files:
+    - target/ROOT.war
+  discard-paths: yes

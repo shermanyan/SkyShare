@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flight Information Form</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #000000;
+      }
+      .form-container {
+        background-color: #343a40;
+        padding: 20px;
+        border-radius: 5px;
+        color: white;
+        max-width: 400px;
+        margin: auto;
+        margin-top: 100px;
+      }
+      .form-container .form-group label {
+        color: white;
+      }
+      .form-container .btn {
+        background-color: #007bff;
+        border: none;
+      }
+      .footer-text {
+        text-align: center;
+        color: #6c757d;
+        margin-top: 20px;
+      }
+      .navbar-brand {
+        font-size: 50px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+      }
+    </style>
+
+    <script>
+      function validate() {
+        document.getElementById("ferror").innerHTML = "";
+        document.getElementById("terror").innerHTML = "";
+        if (document.flightform.fname.checkValidity() == false) {
+          document.getElementById("ferror").innerHTML =
+            '<font color="red">Invalid Flight Number.</font>';
+        }
+        if (document.flightform.tname.checkValidity() == false) {
+          document.getElementById("terror").innerHTML =
+            '<font color="red">Invalid Terminal Number.</font>';
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #000000">
+      <div class="container-fluid">
+        <a class="navbar-brand" style="color: #fff" href="./index.html"
+          >SkyShare.</a
+        >
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav navbar-custom">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                style="color: #fff"
+                href="./index.html"
+                onclick="{home()}"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item" style="display: block">
+              <!--TODO: make dynamic based on user logged in status-->
+              <!--TODO: Need to log user out-->
+              <a
+                class="nav-link"
+                style="color: #fff"
+                href="./index.html"
+                onclick="{login()}"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="form-container">
+      <form name="flightform">
+        <div class="form-group">
+          <label for="flightNumber">Flight Number</label>
+          <input
+            name="fname"
+            type="text"
+            class="form-control"
+            id="flightNumber"
+            placeholder="Type..."
+            required
+            pattern="^[A-Z0-9]+$"
+          />
+        </div>
+        <p id="ferror"></p>
+        <div class="form-group">
+          <label for="terminalNumber">Terminal Number</label>
+          <input
+            name="tname"
+            type="text"
+            class="form-control"
+            id="terminalNumber"
+            placeholder="Type..."
+            required
+            pattern="^[1-8B]$"
+          />
+        </div>
+        <p id="terror"></p>
+        <div class="form-group">
+          <label for="arrivalTime">LAX Arrival Time</label>
+          <input
+            type="time"
+            class="form-control"
+            id="arrivalTime"
+            placeholder="Type..."
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-info btn-block"
+          onclick="validate();"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+    <div class="footer-text">
+      <p>©Team 22</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

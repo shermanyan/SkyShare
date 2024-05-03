@@ -1,0 +1,11 @@
+servlet/NewGroupServlet.class
+resources/User.class
+servlet/GroupServlet$requestJson.class
+database/JDBCConnector.class
+resources/MatchingAlgo.class
+servlet/MatchingServlet.class
+servlet/WebSocket.class
+resources/Group.class
+servlet/GroupServlet.class
+servlet/SignUpServlet.class
+servlet/LoginServlet.class

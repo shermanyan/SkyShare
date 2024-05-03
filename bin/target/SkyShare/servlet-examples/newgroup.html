@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>New Group</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>New Group</h1>
+    <form id="newGroupForm">
+        <label for="departureTime">Departure Time (YYYY-MM-DD HH:MM:SS):</label><br>
+        <input type="text" id="departureTime" name="departureTime"><br>
+        <label for="pickupLocation">Pickup Location:</label><br>
+        <input type="text" id="pickupLocation" name="pickupLocation"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p id="result"></p>
+
+    <script>
+        $(document).ready(function () {
+            $("#newGroupForm").submit(function (event) {
+                event.preventDefault();
+
+                const departureTime = document.getElementById('departureTime').value;
+                const pickupLocation = document.getElementById('pickupLocation').value;
+
+                
+                fetch("http://localhost:8080/SkyShare/NewGroupServlet", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ departureTime, pickupLocation }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("result").textContent = JSON.stringify(data);
+                    });
+            });
+
+
+
+        });
+    </script>
+</body>
+
+</html>

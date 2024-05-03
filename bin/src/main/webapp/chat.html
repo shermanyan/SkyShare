@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat UI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="chat.css">
+</head>
+<body>
+<div class="container">
+  <aside class="sidebar">
+    <div class="logo">
+      <a class="navbar-brand" href="information.html" style="color: #fbfbfb; text-decoration:none;" href="#">SkyShare.</a>
+    </div>
+    <div class="users-list">
+      <!-- Dynamically generated user list -->
+  </div>
+  <div class="location-change">
+      <input type="text" placeholder="Change Pickup Location" />
+      <button>Update</button>
+  </div>
+      <!-- Add more nav items if needed -->
+    <div class="chat-groups">
+      <div class="group">
+        <img src="https://via.placeholder.com/50" alt="Group" class="group-img">
+        <div class="group-info">
+          <h5 class="group-title">group name</h5>
+          <p class="group-message">group description</p>
+        </div>
+      </div>
+      <!--  -->
+    </div>
+  </aside>
+  <section class="chat-area">
+    <header class="chat-header">
+      <!-- this is just some static data but the javascript functions have functionality to send and receive  -->
+      <img src="https://via.placeholder.com/50" alt="Recipient" class="recipient-img">
+      <div id="group-departure-time">Loading departure time...</div>
+      <button class="leave-group-btn">Leave Group</button>
+    </header>
+    <div class="chat-messages">
+      <div class="message received">
+        <p>Hello there?</p>
+        <span class="time">4:30 AM</span>
+      </div>
+      <div class="message sent">
+        <p>Hey there! How can I help you today?</p>
+        <span class="time">4:35 AM</span>
+      </div>
+      <!-- new messages get added dynamically -->
+    </div>
+    <div class="message-input">
+      <form id="message-form">
+        <input type="text" id="message-text" placeholder="Type message...">
+        <button type="submit">Send</button>
+    </form>
+    </div>
+  </section>
+</div>
+<script src="chat.js"></script>
+</body>
+</html>
