@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta viewport="width=device-width, initial-scale=1.0" />
     <title>Matching Page</title>
     <!-- Bootstrap CSS -->
     <link
@@ -10,42 +10,62 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
       body {
         background-color: #000000;
+        font-family: "Poppins", sans-serif;
+        color: #ffffff;
       }
       .navbar-brand {
-        font-size: 50px;
-        font-family: "Poppins", sans-serif;
+        font-size: 30px;
         font-weight: 700;
-        font-style: normal;
       }
       .title {
         text-align: center;
-        color: #ffffff;
-      }
-      .card {
-        width: 30%; /* Adjusted width */
-        text-align: center;
-      }
-      .join {
         margin-top: 20px;
       }
-      /* Center the content of the card body */
-      .card-body-centered {
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+      }
+      .card {
+        flex: 0 1 calc(33.333% - 20px);
+        color: #000000;
+        border: 1px solid #ddd;
+        background-color: rgba(240, 242, 255, 0.612);
+        text-align: left;
+      }
+      .card-body {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+      }
+      @media (max-width: 992px) {
+        .card {
+          flex-basis: calc(50% - 20px);
+        }
+      }
+      @media (max-width: 576px) {
+        .card {
+          flex-basis: 100%;
+        }
+      }
+      .join,
+      .create-group {
+        margin-top: 20px;
       }
     </style>
   </head>
@@ -80,6 +100,7 @@
                 >Home</a
               >
             </li>
+            <!-- Display Logout option only if user is logged in -->
             <li class="nav-item" id="logoutOption" style="display: none">
               <a
                 class="nav-link"
@@ -89,6 +110,7 @@
                 >Logout</a
               >
             </li>
+            <!-- Display Login and Signup options only if user is not logged in -->
             <li class="nav-item" id="loginOption">
               <a class="nav-link" style="color: #fff" href="./login.html"
                 >Login</a
@@ -105,63 +127,47 @@
     </nav>
 
     <div class="title"><h2>Select Group</h2></div>
-    <div class="container mt-5 d-flex justify-content-center">
-      <div class="card mx-2">
-        <h5 class="card-header">Group 1</h5>
-        <div class="card-body">
-          <h6 class="card-title">Number of people: 4</h6>
-          <h6 class="card-title">Group departure time: 12:00pm</h6>
-          <a href="#" class="btn btn-primary join">Join Group</a>
-        </div>
-      </div>
-      <div class="card mx-2">
-        <h5 class="card-header">Group 2</h5>
-        <div class="card-body">
-          <h6 class="card-title">Number of people: 2</h6>
-          <h6 class="card-title">Group departure time: 1:00pm</h6>
-          <a href="#" class="btn btn-primary join">Join Group</a>
-        </div>
-      </div>
-      <div class="card mx-2">
-        <div class="card-body card-body-centered">
-          <!-- Added class card-body-centered -->
-          <h5 class="card-title">Create a Group</h5>
-          <a href="./form.html" class="btn btn-danger">Create Group</a>
-        </div>
-      </div>
+    <div class="container mt-5">
+      <!-- Dynamic cards will be inserted here -->
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script>
       $(document).ready(function () {
-        // Function to fetch groups and populate cards
         function populateCards() {
           $.ajax({
-            url: "/GroupServlet", // Adjust this URL based on your application's context path
+            url: "/GroupServlet",
             method: "GET",
-            dataType: "json", // Expecting JSON data in response
+            dataType: "json",
             success: function (groups) {
               var container = $(".container");
               container.empty(); // Clear existing content
-
-              // Dynamically create cards for each group
               groups.forEach(function (group) {
                 var cardHtml = `
-                        <div class="card mx-2" style="width: 40%; margin: auto; text-align: center;">
-                            <h5 class="card-header">Group ${group.groupID}</h5>
-                            <div class="card-body">
-                                <h6 class="card-title">Group departure time: ${group.departureTime}</h6>
-                                <a href="#" class="btn btn-primary join" onclick="joinGroup(${group.groupID})">Join Group</a>
-                            </div>
-                        </div>
-                        <br />
-                    `;
+                              <div class="card mx-2">
+                                  <h5 class="card-header">Group ${group.groupID}</h5>
+                                  <div class="card-body">
+                                      <h6 class="card-title">Number of people: ${group.users.length}</h6>
+                                      <h6 class="card-title">Group departure time: ${group.departureTime}</h6>
+                                      <h6 class="card-title">Pick-up location: ${group.pickupLocation}</h6>
+                                      <button class="btn btn-primary join" onclick="joinGroup(${group.groupID})">Join Group</button>
+                                  </div>
+                              </div>
+                          `;
                 container.append(cardHtml);
               });
+
+              // Add Create Group card
+              var createGroupHtml = `
+                          <div class="card mx-2">
+                              <div class="card-body">
+                                  <h5 class="card-title">Create a New Group</h5>
+                                  <a href="form.html" class="btn btn-success create-group">Create Group</a>
+                              </div>
+                          </div>
+                      `;
+              container.append(createGroupHtml);
             },
             error: function (xhr, status, error) {
               console.error("Error fetching groups: ", error);
@@ -169,40 +175,58 @@
           });
         }
 
-        // Call populateCards function to populate cards on page load
-        populateCards();
-
-        // Function to handle group join
+        // Function to handle joining a group
         window.joinGroup = function (groupId) {
-          console.log("Joining Group ID:", groupId);
-          // Implement AJAX POST request to join the group using groupId
-          // Further action after joining can be implemented here
+          const userId = sessionStorage.getItem("userID"); // Assuming userID is stored in sessionStorage
+          if (!userId) {
+            alert("You must be logged in to join a group.");
+            return;
+          }
+
+          $.ajax({
+            url: "/GroupServlet",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+              user_ID: userId,
+              group_ID: groupId,
+              join: true,
+            }),
+            success: function (response) {
+              alert("You have successfully joined the group.");
+              populateCards(); // Refresh the cards to show any changes
+              window.location.href = "chat.html";
+            },
+            error: function (xhr, status, error) {
+              alert("Failed to join the group. Error: " + xhr.responseText);
+            },
+          });
         };
-      });
 
-      const updateNavBar = () => {
-        const isLoggedIn = sessionStorage.getItem("isLoggedIn");
-        if (isLoggedIn) {
-          document.getElementById("logoutOption").style.display = "block";
-          document.getElementById("loginOption").style.display = "none";
-          document.getElementById("signupOption").style.display = "none";
-        } else {
-          document.getElementById("logoutOption").style.display = "none";
-          document.getElementById("loginOption").style.display = "block";
-          document.getElementById("signupOption").style.display = "block";
+        // Function to handle user logout
+        window.logout = function () {
+          event.preventDefault();
+          sessionStorage.removeItem("isLoggedIn");
+          sessionStorage.removeItem("userID");
+          sessionStorage.removeItem("groupID");
+          sessionStorage.removeItem("username");
+          window.location.href = "login.html";
+        };
+
+        function updateNavBar() {
+          const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+          if (isLoggedIn) {
+            $("#logoutOption").show();
+            $("#loginOption").hide();
+            $("#signupOption").hide();
+          } else {
+            $("#logoutOption").hide();
+            $("#loginOption").show();
+            $("#signupOption").show();
+          }
         }
-      };
 
-      const logout = () => {
-        event.preventDefault();
-        sessionStorage.removeItem("isLoggedIn");
-        sessionStorage.removeItem("userID");
-        sessionStorage.removeItem("groupID");
-        sessionStorage.removeItem("username");
-        window.location.href = "login.html";
-      };
-
-      document.addEventListener("DOMContentLoaded", () => {
+        populateCards();
         updateNavBar();
       });
     </script>
