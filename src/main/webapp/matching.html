@@ -134,7 +134,52 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     <script>
+      $(document).ready(function () {
+        // Function to fetch groups and populate cards
+        function populateCards() {
+          $.ajax({
+            url: "/GroupServlet", // Adjust this URL based on your application's context path
+            method: "GET",
+            dataType: "json", // Expecting JSON data in response
+            success: function (groups) {
+              var container = $(".container");
+              container.empty(); // Clear existing content
+
+              // Dynamically create cards for each group
+              groups.forEach(function (group) {
+                var cardHtml = `
+                        <div class="card mx-2" style="width: 40%; margin: auto; text-align: center;">
+                            <h5 class="card-header">Group ${group.groupID}</h5>
+                            <div class="card-body">
+                                <h6 class="card-title">Group departure time: ${group.departureTime}</h6>
+                                <a href="#" class="btn btn-primary join" onclick="joinGroup(${group.groupID})">Join Group</a>
+                            </div>
+                        </div>
+                        <br />
+                    `;
+                container.append(cardHtml);
+              });
+            },
+            error: function (xhr, status, error) {
+              console.error("Error fetching groups: ", error);
+            },
+          });
+        }
+
+        // Call populateCards function to populate cards on page load
+        populateCards();
+
+        // Function to handle group join
+        window.joinGroup = function (groupId) {
+          console.log("Joining Group ID:", groupId);
+          // Implement AJAX POST request to join the group using groupId
+          // Further action after joining can be implemented here
+        };
+      });
+
       const updateNavBar = () => {
         const isLoggedIn = sessionStorage.getItem("isLoggedIn");
         if (isLoggedIn) {
