@@ -37,8 +37,7 @@
 
       .card {
         width: 40%;
-        display: flex;
-        margin-left: 372px;
+        margin: auto; /* This will center the card horizontally */
         text-align: center;
       }
 
@@ -149,15 +148,14 @@
       };
 
       const logout = () => {
-          event.preventDefault();
-          sessionStorage.removeItem("isLoggedIn");
-          sessionStorage.removeItem("userID");
-          sessionStorage.removeItem("groupID");
-          sessionStorage.removeItem("username");
-          window.location.href = "login.html";
-        };
-        
-        
+        event.preventDefault();
+        sessionStorage.removeItem("isLoggedIn");
+        sessionStorage.removeItem("userID");
+        sessionStorage.removeItem("groupID");
+        sessionStorage.removeItem("username");
+        window.location.href = "login.html";
+      };
+
       document.addEventListener("DOMContentLoaded", () => {
         updateNavBar();
       });

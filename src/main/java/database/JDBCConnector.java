@@ -399,7 +399,8 @@ public class JDBCConnector {
 				String username = rs.getString("Username");
 				String password = rs.getString("Password");
 				String phoneNumber = rs.getString("PhoneNumber");
-				int groupID = rs.getInt("GroupID");
+				// int groupID = rs.getInt("GroupID");
+				int groupID = -1;
 				User user = new User(userID, username, password, phoneNumber, groupID);
 				users.add(user);
 			}
