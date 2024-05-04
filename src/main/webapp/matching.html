@@ -29,20 +29,23 @@
         font-weight: 700;
         font-style: normal;
       }
-
       .title {
-        /* color: #FFFFFF; */
         text-align: center;
+        color: #ffffff;
       }
-
       .card {
-        width: 40%;
-        margin: auto; /* This will center the card horizontally */
+        width: 30%; /* Adjusted width */
         text-align: center;
       }
-
       .join {
         margin-top: 20px;
+      }
+      /* Center the content of the card body */
+      .card-body-centered {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
     </style>
   </head>
@@ -77,7 +80,6 @@
                 >Home</a
               >
             </li>
-            <!-- Display Logout option only if user is logged in -->
             <li class="nav-item" id="logoutOption" style="display: none">
               <a
                 class="nav-link"
@@ -87,7 +89,6 @@
                 >Logout</a
               >
             </li>
-            <!-- Display Login and Signup options only if user is not logged in -->
             <li class="nav-item" id="loginOption">
               <a class="nav-link" style="color: #fff" href="./login.html"
                 >Login</a
@@ -103,39 +104,39 @@
       </div>
     </nav>
 
-    <div class="title"><h2 style="color: #ffffff">Select Group</h2></div>
-    <div class="container mt-5">
-      <div class="card">
+    <div class="title"><h2>Select Group</h2></div>
+    <div class="container mt-5 d-flex justify-content-center">
+      <div class="card mx-2">
         <h5 class="card-header">Group 1</h5>
-        <!-- replace 1 with variable corresp. to group ID -->
         <div class="card-body">
           <h6 class="card-title">Number of people: 4</h6>
-          <!-- replace 4 with correct variable -->
           <h6 class="card-title">Group departure time: 12:00pm</h6>
           <a href="#" class="btn btn-primary join">Join Group</a>
         </div>
       </div>
-      <br />
-      <div class="card">
+      <div class="card mx-2">
         <h5 class="card-header">Group 2</h5>
-        <!-- replace 1 with variable corresp. to group ID -->
         <div class="card-body">
           <h6 class="card-title">Number of people: 2</h6>
-          <!-- replace 4 with correct variable -->
           <h6 class="card-title">Group departure time: 1:00pm</h6>
           <a href="#" class="btn btn-primary join">Join Group</a>
         </div>
       </div>
+      <div class="card mx-2">
+        <div class="card-body card-body-centered">
+          <!-- Added class card-body-centered -->
+          <h5 class="card-title">Create a Group</h5>
+          <a href="./form.html" class="btn btn-danger">Create Group</a>
+        </div>
+      </div>
     </div>
 
-    <!-- Bootstrap Bundle with Popper -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script>
       const updateNavBar = () => {
         const isLoggedIn = sessionStorage.getItem("isLoggedIn");
-
         if (isLoggedIn) {
           document.getElementById("logoutOption").style.display = "block";
           document.getElementById("loginOption").style.display = "none";
