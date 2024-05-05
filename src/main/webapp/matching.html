@@ -182,6 +182,7 @@
             alert("You must be logged in to join a group.");
             return;
           }
+          sessionStorage.setItem("groupID", groupId);
 
           $.ajax({
             url: "/GroupServlet",

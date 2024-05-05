@@ -3,103 +3,238 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat UI</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Flight Information Form</title>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="chat.css" />
+    <style>
+      body {
+        background-color: #000000;
+      }
+      .form-container {
+        background-color: #343a40;
+        padding: 20px;
+        border-radius: 5px;
+        color: white;
+        max-width: 400px;
+        margin: auto;
+        margin-top: 100px;
+      }
+      .form-container .form-group label {
+        color: white;
+      }
+      .form-container .btn {
+        background-color: #007bff;
+        border: none;
+      }
+      .footer-text {
+        text-align: center;
+        color: #6c757d;
+        margin-top: 20px;
+      }
+      .navbar-brand {
+        font-size: 50px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+      }
+      iframe,
+      .card {
+        width: 100%;
+        height: 400px;
+        border: none;
+        margin-bottom: 20px;
+      }
+    </style>
   </head>
   <body>
-    <div class="container">
-      <aside class="sidebar">
-        <div class="logo">
-          <a
-            class="navbar-brand"
-            href="information.html"
-            style="color: #fbfbfb; text-decoration: none"
-            href="#"
-            >SkyShare.</a
+    <nav class="navbar navbar-expand-lg" style="background-color: #000000">
+      <div class="container-fluid">
+        <a class="navbar-brand" style="color: #fff" href="./index.html"
+          >SkyShare.</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav navbar-custom">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                style="color: #fff"
+                href="./index.html"
+                >Home</a
+              >
+            </li>
+            <!-- Display Logout option only if user is logged in -->
+            <li class="nav-item" id="logoutOption" style="display: none">
+              <a
+                class="nav-link"
+                style="color: #fff"
+                href="#"
+                onclick="logout()"
+                >Logout</a
+              >
+            </li>
+            <!-- Display Login and Signup options only if user is not logged in -->
+            <li class="nav-item" id="loginOption">
+              <a class="nav-link" style="color: #fff" href="./login.html"
+                >Login</a
+              >
+            </li>
+            <li class="nav-item" id="signupOption">
+              <a class="nav-link" style="color: #fff" href="./signup.html"
+                >Sign Up</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+          <iframe
+            width="600"
+            height="450"
+            style="border: 0"
+            loading="lazy"
+            allowfullscreen=""
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAaI3lmIyQEc3TynVHn2lMc8_piZj4owF0
+  &amp;q=LAX_IT"
           >
+          </iframe>
         </div>
-        <div class="users-list">
-          <!-- Dynamically generated user list -->
-        </div>
-        <div class="location-change">
-          <input type="text" placeholder="Change Pickup Location" />
-          <button>Update</button>
-        </div>
-        <!-- Add more nav items if needed -->
-        <div class="chat-groups">
-          <div class="group">
-            <img
-              src="https://via.placeholder.com/50"
-              alt="Group"
-              class="group-img"
-            />
-            <div class="group-info">
-              <h5 class="group-title">group name</h5>
-              <p class="group-message">group description</p>
+        <div class="col-md-4">
+          <div class="card">
+            <div
+              class="card-body d-flex justify-content-center align-items-center"
+            >
+              <h5 class="card-title">insert group number</h5>
+              <h5 class="card-title">insert departure time</h5>
+              <p class="card-text">
+                username, phonenumber<br />
+                username, phonenumber<br />
+                username, phonenumber
+              </p>
             </div>
           </div>
-          <!--  -->
         </div>
-
-        <iframe
-          width="600"
-          height="450"
-          style="border: 0"
-          loading="lazy"
-          allowfullscreen=""
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAaI3lmIyQEc3TynVHn2lMc8_piZj4owF0
-    &amp;q=LAX_IT"
-        >
-        </iframe>
-      </aside>
-      <section class="chat-area">
-        <header class="chat-header">
-          <!-- this is just some static data but the javascript functions have functionality to send and receive  -->
-          <img
-            src="https://via.placeholder.com/50"
-            alt="Recipient"
-            class="recipient-img"
-          />
-          <div id="group-departure-time">Loading departure time...</div>
-          <button class="leave-group-btn">Leave Group</button>
-        </header>
-        <div class="chat-messages">
-          <div class="message received">
-            <p>Hello there?</p>
-            <span class="time">4:30 AM</span>
-          </div>
-          <div class="message sent">
-            <p>Hey there! How can I help you today?</p>
-            <span class="time">4:35 AM</span>
-          </div>
-          <!-- new messages get added dynamically -->
-        </div>
-        <div class="message-input">
-          <form id="message-form">
-            <input
-              type="text"
-              id="message-text"
-              placeholder="Type message..."
-            />
-            <button type="submit">Send</button>
-          </form>
-        </div>
-      </section>
+      </div>
     </div>
-    <script src="chat.js"></script>
+    <div class="footer-text">
+      <p>©Team 22</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+      const updateNavBar = () => {
+        const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+
+        if (isLoggedIn) {
+          document.getElementById("logoutOption").style.display = "block";
+          document.getElementById("loginOption").style.display = "none";
+          document.getElementById("signupOption").style.display = "none";
+        } else {
+          document.getElementById("logoutOption").style.display = "none";
+          document.getElementById("loginOption").style.display = "block";
+          document.getElementById("signupOption").style.display = "block";
+        }
+      };
+
+      const logout = () => {
+        event.preventDefault();
+        sessionStorage.removeItem("isLoggedIn");
+        sessionStorage.removeItem("userId");
+        sessionStorage.removeItem("balance");
+        window.location.href = "login.html";
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        updateNavBar();
+      });
+
+      function fetchGroupInfo() {
+        // Example group ID fetch; replace with dynamic group ID as needed
+        const groupId = sessionStorage.getItem("groupID");
+        console.log("group id: ", groupId);
+
+        fetch(`/GroupServlet?groupId=${groupId}`)
+          .then((response) => response.json())
+          .then((data) => {
+            const groupContainer = document.querySelector(".col-md-4");
+            groupContainer.innerHTML = ""; // Clear previous content
+
+            if (data.length > 0) {
+              const groupCard = document.createElement("div");
+              groupCard.classList.add("card");
+
+              const cardBody = document.createElement("div");
+              cardBody.classList.add("card-body");
+
+              const groupNumberTitle = document.createElement("h5");
+              groupNumberTitle.classList.add("card-title");
+              groupNumberTitle.textContent = `Group Number: ${groupId}`;
+
+              const locationTitle = document.createElement("h5");
+              locationTitle.classList.add("card-title");
+              locationTitle.textContent = `Pick-up Location: ${
+                data[groupId - 1].pickupLocation
+              }`;
+
+              const userList = document.createElement("p");
+              userList.classList.add("card-text");
+              // debugging
+              const groupID = data.find((group) => group.groupID == groupId);
+              const usersInGroup = groupID.users
+                .map((user) => `${user.username}, ${user.phoneNumber}`)
+                .join("<br>");
+              userList.innerHTML = `</p><p><strong>Users:</strong><br>${usersInGroup}</p>`;
+
+              // Append elements to their respective parents
+              cardBody.appendChild(groupNumberTitle);
+              cardBody.appendChild(locationTitle);
+              cardBody.appendChild(userList);
+              groupCard.appendChild(cardBody);
+
+              // Append the card to the group container
+              groupContainer.appendChild(groupCard);
+            } else {
+              const noGroupInfoDiv = document.createElement("div");
+              noGroupInfoDiv.textContent = "No group info available";
+              groupContainer.appendChild(noGroupInfoDiv);
+            }
+          })
+          .catch((error) => console.error("Error fetching group info:", error));
+      }
+
+      // Call the fetchGroupInfo function when the page loads
+      document.addEventListener("DOMContentLoaded", fetchGroupInfo);
+
+      // Call the fetchGroupInfo function when the page loads
+      document.addEventListener("DOMContentLoaded", fetchGroupInfo);
+    </script>
   </body>
 </html>
