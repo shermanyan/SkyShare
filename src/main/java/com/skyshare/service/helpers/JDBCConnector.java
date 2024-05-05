@@ -1,13 +1,25 @@
-package com.skyshare.database;
+package com.skyshare.service.helpers;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 public class JDBCConnector {
-	
 	@Autowired
     private JdbcTemplate jdbcTemplate;
-
 
 	/**
 	 * Adds a new user to the database.
@@ -16,64 +28,33 @@ public class JDBCConnector {
 	 * @return the ID of the newly added user, or -1 if the username already exists,
 	 *         or -2 if the phone number already exists
 	 */
-	public static int addUser(User user) throws SQLException {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
+    public int addUser(User user) {
+        try {
+            KeyHolder keyHolder = new GeneratedKeyHolder();
+            jdbcTemplate.update(
+                new PreparedStatementCreator() {
+                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                        PreparedStatement ps = connection.prepareStatement(
+                            "INSERT INTO `users` (Username, Password, PhoneNumber, GroupID) VALUES (?, ?, ?, ?)",
+                            Statement.RETURN_GENERATED_KEYS);
+                        ps.setString(1, user.username);
+                        ps.setString(2, user.password);
+                        ps.setString(3, user.phoneNumber);
+                        ps.setInt(4, user.groupID);
+                        return ps;
+                    }
+                },
+                keyHolder);
+            return keyHolder.getKey().intValue();
+        } catch (DuplicateKeyException e) {
+            // Handle duplicate key exception
+            // You can check the specific error message to determine if it's a duplicate username or phone number
+            // and return -1 or -2 accordingly
+            System.out.println("Duplicate key: " + e.getMessage());
+            return -1; // or -2
+        }
+    }
 
-		try {
-			conn = getConnection();
-
-			// Check if username already exists
-			ps = conn.prepareStatement("SELECT * FROM `users` WHERE Username = ?");
-			ps.setString(1, user.username);
-			rs = ps.executeQuery();
-			if (rs.next()) {
-				return -1; // Username already exists
-			}
-
-			// Check if phone number already exists
-			ps = conn.prepareStatement("SELECT * FROM `users` WHERE PhoneNumber = ?");
-			ps.setString(1, user.phoneNumber);
-			rs = ps.executeQuery();
-			if (rs.next()) {
-				return -2; // Phone number already exists
-			}
-
-			// Insert new user
-			ps = conn.prepareStatement(
-					"INSERT INTO `users` (Username, Password, PhoneNumber, GroupID) VALUES (?, ?, ?, ?)",
-					Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, user.username);
-			ps.setString(2, user.password);
-			ps.setString(3, user.phoneNumber);
-			ps.setInt(4, user.groupID);
-			ps.executeUpdate();
-
-			rs = ps.executeQuery("SELECT LAST_INSERT_ID()");
-
-			if (rs.next()) {
-				user.userID = rs.getInt(1);
-			}
-
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (ps != null) {
-					ps.close();
-				}
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (SQLException e) {
-				System.out.println("sqle: " + e.getMessage());
-			}
-		}
-
-		return user.userID;
-	}
 
 	/**
 	 * Logs in a user with the specified username and password.
