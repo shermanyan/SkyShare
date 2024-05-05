@@ -46,20 +46,6 @@
         font-style: normal;
       }
     </style>
-    <!-- <script>
-      function validate() {
-        document.getElementById("uerror").innerHTML = "";
-        document.getElementById("perror").innerHTML = "";
-        if (document.loginform.uname.checkValidity() == false) {
-          document.getElementById("uerror").innerHTML =
-            '<font color="red">Username must be between 5 and 20 characters and contain no special characters.</font>';
-        }
-        if (document.loginform.pname.checkValidity() == false) {
-          document.getElementById("perror").innerHTML =
-            '<font color="red">Password must be at least 8 characters and contain a letter, number, and special character.</font>';
-        }
-      }
-    </script> -->
   </head>
   <body>
     <nav class="navbar navbar-expand-lg" style="background-color: #000000">
@@ -67,7 +53,6 @@
         <a class="navbar-brand" style="color: #fff" href="./index.html"
           >SkyShare.</a
         >
-
         <button
           class="navbar-toggler"
           type="button"
@@ -79,7 +64,6 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div
           class="collapse navbar-collapse justify-content-end"
           id="navbarNav"
@@ -166,7 +150,13 @@
               sessionStorage.setItem("username", response.username);
               sessionStorage.setItem("isLoggedIn", true);
 
-              window.location.href = "matching.html";
+              // Check if groupID is greater than 0
+              if (response.groupID > 0) {
+                window.location.href = "chat.html";
+              } else {
+                // Handle the case when groupID is not greater than 0
+                alert("You are not a member of any group.");
+              }
             },
             error: function (response) {
               alert("Username or password do not match");
