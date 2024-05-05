@@ -13,6 +13,7 @@ public class MatchingAlgo {
      * @param pickupLocation the pickup location to be matched
      */
     public static void match(ArrayList<Group> groups, Timestamp departureTime, String pickupLocation) {
+        // Looping through the groups
         for (int i = 0; i < groups.size(); i++) {
             Group group = groups.get(i);
             if (Timestamp.valueOf(group.departureTime).after(departureTime) || !group.pickupLocation.equals(pickupLocation)) {
