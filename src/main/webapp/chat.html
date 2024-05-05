@@ -52,6 +52,16 @@
         border: none;
         margin-bottom: 20px;
       }
+
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: #444;
+        color: white;
+      }
     </style>
   </head>
   <body>
@@ -211,7 +221,7 @@
               const usersInGroup = groupID.users
                 .map((user) => `${user.username}, ${user.phoneNumber}`)
                 .join("<br>");
-              userList.innerHTML = `</p><p><strong>Users:</strong><br>${usersInGroup}</p>`;
+              userList.innerHTML = `</p><p><strong>Users</strong><br>${usersInGroup}</p>`;
 
               // Append elements to their respective parents
               cardBody.appendChild(groupNumberTitle);

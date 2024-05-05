@@ -52,17 +52,23 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        text-align: center;
       }
       @media (max-width: 992px) {
         .card {
-          flex-basis: calc(50% - 20px);
+          flex-basis: calc(
+            33.333% - 20px
+          ); /* Adjust the percentage as per your preference */
         }
       }
       @media (max-width: 576px) {
         .card {
-          flex-basis: 100%;
+          flex-basis: calc(
+            50% - 20px
+          ); /* Adjust the percentage as per your preference */
         }
       }
+
       .join,
       .create-group {
         margin-top: 20px;
@@ -148,9 +154,9 @@
                               <div class="card mx-2">
                                   <h5 class="card-header">Group ${group.groupID}</h5>
                                   <div class="card-body">
-                                      <h6 class="card-title">Number of people: ${group.users.length}</h6>
-                                      <h6 class="card-title">Group departure time: ${group.departureTime}</h6>
-                                      <h6 class="card-title">Pick-up location: ${group.pickupLocation}</h6>
+                                      <h6 class="card-title">Number of People: ${group.users.length}</h6>
+                                      <h6 class="card-title">Departure Time: ${group.departureTime}</h6>
+                                      <h6 class="card-title">Pick-up Location: ${group.pickupLocation}</h6>
                                       <button class="btn btn-primary join" onclick="joinGroup(${group.groupID})">Join Group</button>
                                   </div>
                               </div>
