@@ -1,24 +1,15 @@
-CREATE SCHEMA `SkyShare`;
 
-CREATE TABLE SkyShare.`groups`(
+CREATE TABLE ebdb.`groups`(
     GroupID INT AUTO_INCREMENT PRIMARY KEY,
     DepartureTime TIMESTAMP,
-    PickupLocation TEXT
+    PickupLocation VARCHAR(255)
 );
 
-CREATE TABLE SkyShare.`users` (
+CREATE TABLE ebdb.`users` (
     UserID INT AUTO_INCREMENT PRIMARY KEY,
     Username VARCHAR(255),
     Password VARCHAR(255),
-    PhoneNumber BIGINT,
-    GroupID INT DEFAULT NULL,
-    FOREIGN KEY (`GroupID`) REFERENCES SkyShare.`groups`(`GroupID`)
+    PhoneNumber VARCHAR(255),
+    GroupID INT DEFAULT -1
 );
 
-CREATE TABLE SkyShare.`group_users` (
-    GroupID INT,
-    UserID INT,
-    PRIMARY KEY (GroupID, UserID),
-    FOREIGN KEY (GroupID) REFERENCES SkyShare.`groups`(GroupID),
-    FOREIGN KEY (UserID) REFERENCES SkyShare.`users`(UserID)
-);

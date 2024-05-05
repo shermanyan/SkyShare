@@ -34,7 +34,7 @@ public class JDBCConnector {
 
 		String user = "root";
 		String password = "skyshare22";
-		String url = "jdbc:mysql://awseb-e-kgshp47exp-stack-awsebrdsdatabase-yve2qgxjeiut.c7asiigc2cjn.us-west-1.rds.amazonaws.com:3306/ebdb";
+		String url = "jdbc:mysql://awseb-e-kgshp47exp-stack-awsebrdsdatabase-eqro3xq2jyhg.c7asiigc2cjn.us-west-1.rds.amazonaws.com:3306/ebdb";
 
 		System.out.println("user: " + user + " password: " + password + " url: " + url);
 		
