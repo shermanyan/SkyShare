@@ -154,8 +154,7 @@
               if (response.groupID > 0) {
                 window.location.href = "chat.html";
               } else {
-                // Handle the case when groupID is not greater than 0
-                alert("You are not a member of any group.");
+                window.location.href = "index.html";
               }
             },
             error: function (response) {
