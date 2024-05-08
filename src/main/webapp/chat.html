@@ -187,7 +187,6 @@
       });
 
       function fetchGroupInfo() {
-        // Example group ID fetch; replace with dynamic group ID as needed
         const groupId = sessionStorage.getItem("groupID");
         console.log("group id: ", groupId);
 
@@ -216,7 +215,7 @@
 
               const userList = document.createElement("p");
               userList.classList.add("card-text");
-              // debugging
+              
               const groupID = data.find((group) => group.groupID == groupId);
               const usersInGroup = groupID.users
                 .map((user) => `${user.username}, ${user.phoneNumber}`)

@@ -58,14 +58,14 @@
         .card {
           flex-basis: calc(
             33.333% - 20px
-          ); /* Adjust the percentage as per your preference */
+          );
         }
       }
       @media (max-width: 576px) {
         .card {
           flex-basis: calc(
             50% - 20px
-          ); /* Adjust the percentage as per your preference */
+          );
         }
       }
 
@@ -164,7 +164,7 @@
                 container.append(cardHtml);
               });
 
-              // Add Create Group card
+            
               var createGroupHtml = `
                           <div class="card mx-2">
                               <div class="card-body">
@@ -183,7 +183,7 @@
 
         // Function to handle joining a group
         window.joinGroup = function (groupId) {
-          const userId = sessionStorage.getItem("userID"); // Assuming userID is stored in sessionStorage
+          const userId = sessionStorage.getItem("userID"); 
           if (!userId) {
             alert("You must be logged in to join a group.");
             return;
