@@ -19,3 +19,15 @@ this application is built using HTML, CSS, JavaScript, and Java with MySQL datab
   
 Deployed URL (http://skyshare.us-west-1.elasticbeanstalk.com)
 
+## Team
+#### Project Architect
+* Sherman Yan | [shermany@usc.edu](mailto:shermany@usc.edu) | [shermanyan](https://github.com/shermanyan)
+#### Frontend Developers
+* Jacob Rojit (Lead) | [rojit@usc.edu](mailto:rojit@usc.edu) | [jacobr004](https://github.com/jacobr004)
+* Vaasvi Choudhary | [vaasvich@usc.edu](mailto:vaasvich@usc.edu) | [vaasvi](https://github.com/vaasvi)
+* Parini Gandhi | [parinig@usc.edu](mailto:parinig@usc.edu) | [pg-19](https://github.com/pg-19)
+* Yash Bansal | [ybansal@usc.edu](mailto:ybansal@usc.edu) | [ybansal777](https://github.com/ybansal777)
+#### Backend Developers
+* Siddarth Rudraraju (Lead) | [sr88018@usc.edu](mailto:sr88018@usc.edu) | [siddarth17](https://github.com/siddarth17)
+* Ignacio Urbina Gonzalez | [urbinago@usc.edu](mailto:urbinago@usc.edu) | [urbinago](https://github.com/urbinago)
+* Guillermo Basterra  | [basterra@usc.edu](mailto:basterra@usc.edu) | [guillebasterra](https://github.com/guillebasterra)
