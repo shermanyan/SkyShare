@@ -2,6 +2,13 @@
 SkyShare is a web application designed as a simple solution to finding safe and economical rides when they travel from LAX. Developed for USC CSCI201L group project,
 this application is built using HTML, CSS, JavaScript, and Java with MySQL database. Bootstrap and jQuery were used to enhance user experience and page dynamics. 
 
+## Features
+
+* Login/Signup
+* Search for groups
+* Join groups
+* View group
+  
 ## Built With
 
 [![Tech Stack](https://skillicons.dev/icons?i=java,js,css,html,mysql,jquery,maven,regex,bootstrap,&perline=10)](https://skillicons.dev)
@@ -9,7 +16,6 @@ this application is built using HTML, CSS, JavaScript, and Java with MySQL datab
 ## Tools Used 
 
 [![Tools](https://skillicons.dev/icons?i=vscode,eclipse,postman,&perline=6)](https://skillicons.dev)
-
 
 ## AWS Deployment
 * Environment - Elastic Beanstalk
@@ -31,3 +37,13 @@ Deployed URL (http://skyshare.us-west-1.elasticbeanstalk.com)
 * Siddarth Rudraraju (Lead) | [sr88018@usc.edu](mailto:sr88018@usc.edu) | [siddarth17](https://github.com/siddarth17)
 * Ignacio Urbina Gonzalez | [urbinago@usc.edu](mailto:urbinago@usc.edu) | [urbinago](https://github.com/urbinago)
 * Guillermo Basterra  | [basterra@usc.edu](mailto:basterra@usc.edu) | [guillebasterra](https://github.com/guillebasterra)
+
+
+## Preview
+
+![Home](img/readme/home.jpeg)
+![Login](img/readme/login.jpeg)
+![Matching](img/readme/matching.jpeg)
+![Form](img/readme/form.jpeg)
+![Group](img/readme/group.jpeg)
+
