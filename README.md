@@ -11,11 +11,11 @@ this application is built using HTML, CSS, JavaScript, and Java with MySQL datab
   
 ## Built With
 
-[![Tech Stack](https://skillicons.dev/icons?i=java,js,css,html,mysql,jquery,maven,regex,bootstrap,&perline=10)]
+[![](https://skillicons.dev/icons?i=java,js,css,html,mysql,jquery,maven,regex,bootstrap,&perline=10)]()
 
 ## Tools Used 
 
-[![Tools](https://skillicons.dev/icons?i=vscode,eclipse,postman,&perline=6)]
+[![](https://skillicons.dev/icons?i=vscode,eclipse,postman,&perline=6)]()
 
 ## AWS Deployment
 * Environment - Elastic Beanstalk
